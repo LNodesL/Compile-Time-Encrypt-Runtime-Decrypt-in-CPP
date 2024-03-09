@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 
 #include <cstddef> // For size_t
 
@@ -13,8 +14,13 @@ public:
     }
 
     const char* decrypt() const {
-        if (!isEncrypted_ || isCleared_) {
+
+        if (isCleared_) {
             return ""; // Return an empty string if already cleared or decrypted.
+        }
+
+        if(!isEncrypted_){
+            return decrypted_;
         }
 
         for (size_t i = 0; i < N; ++i) {
